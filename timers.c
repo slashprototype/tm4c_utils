@@ -18,8 +18,8 @@
 
 
 
-void timer1IntHandler( void ){
-    TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+void devTimerIntClear(timer_module_t* timer){
+    TimerIntClear(timer->hw_timer_base, timer->timer_int_mode);
 }
 
 void timerDisable(timer_module_t* timer){

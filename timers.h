@@ -31,9 +31,8 @@ struct timer_module_legacy_functions{
     void (*timerSetup)(timer_module_t*);
     void (*timerDisable)(timer_module_t*);
     void (*timerEnable)(timer_module_t*);
+    void (*timerIntClear)(timer_module_t*);
 };
-
-
 
 /* Function to handle the timer0 ISR*/
 void timer0IntHandler( void );
@@ -43,6 +42,8 @@ void timerSetup( timer_module_t* timer );
 void timerEnable( timer_module_t* timer );
 /* Disable and clear the timer0 ISR caused by timeout of TimerA*/
 void timerDisable( timer_module_t* timer );
+/* Legacy Interruption clear, should be called at isr handler*/
+void devTimerIntClear( timer_module_t* timer);
 
 
 #endif /* SRC_TM4C_UTILS_TIMERS_H_ */
