@@ -19,10 +19,16 @@ typedef struct{
 
 }pin_t;
 
+void configIOPin(bool is_input, pin_t *pin, uint32_t gpio_port, uint32_t gpio_pin, uint32_t sysctl_periph);
 void initIOPin(bool is_input, pin_t *pin, uint32_t gpio_port, uint32_t gpio_pin, uint32_t sysctl_periph);
 void initIOPinPWM(pin_t *pin, uint32_t sysctl_periph, uint32_t pin_pwm_map, uint32_t pwm_sysctl_div);
 void setupIOPin(pin_t *pin, bool is_input);
 void pinWrite(pin_t *pin, uint8_t value);
 uint8_t pinRead(pin_t *pin);
+/* Toggle the pin state, from 0 to 1, or 1 to 0*/
 void togglePin(pin_t *pin);
+/* Verify if peripheral is already enabled, in other case will enable it*/
+void verifyPeripheral(uint32_t sysctl_periph);
+
+
 #endif /* SRC_LIBS_PINS_H_ */
