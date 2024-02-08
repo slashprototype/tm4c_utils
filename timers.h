@@ -8,8 +8,10 @@
 #ifndef SRC_TM4C_UTILS_TIMERS_H_
 #define SRC_TM4C_UTILS_TIMERS_H_
 
+/// \cond
 #include <stdint.h>
 #include <stdbool.h>
+/// \endcond
 
 typedef struct timer_module_legacy_functions timer_module_legacy_functions_t;
 
