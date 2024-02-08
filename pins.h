@@ -8,8 +8,11 @@
 #ifndef SRC_LIBS_PINS_H_
 #define SRC_LIBS_PINS_H_
 
+/* Standard library files should be excluded for DOXYGEN Documentation*/
+/// \cond
 #include <stdint.h>
 #include <stdbool.h>
+/// \endcond
 
 typedef struct{
     uint32_t GPIO_PIN;

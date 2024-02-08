@@ -8,6 +8,10 @@
 #ifndef SRC_TM4C_UTILS_TIMERS_H_
 #define SRC_TM4C_UTILS_TIMERS_H_
 
+<<<<<<< HEAD
+=======
+/* Standard library files should be excluded for DOXYGEN Documentation*/
+>>>>>>> 6ba254c23c36c9ea9d6f9414b750a2c9b899239f
 /// \cond
 #include <stdint.h>
 #include <stdbool.h>
