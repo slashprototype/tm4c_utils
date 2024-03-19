@@ -1,4 +1,5 @@
-#include "timers.h"
+#include <src/tm4c_utils/timers.h>
+
 #include "driverlib/timer.h"
 #include "inc/hw_memmap.h"
 #include "driverlib/sysctl.h"
