@@ -28,6 +28,7 @@ struct timer_module {
     uint32_t counter;           // User variable, can be apply to increase every ISR handler
     uint8_t is_enabled;
     void (*isrFunction)(void); // pointer to ISR handler function, assigned by user case application
+    void (*intClear)(void);
     void (*enable)(timer_module_t*);
     void (*disable)(timer_module_t*);
     void (*configureFrequency)(timer_module_t*, uint32_t);

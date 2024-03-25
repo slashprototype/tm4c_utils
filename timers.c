@@ -14,6 +14,10 @@
 #include "driverlib/timer.h"
 #include "inc/hw_memmap.h"
 
+static void intClear(timer_module_t* timer) {
+    TimerIntClear(timer->hw_timer_base, timer->timer_int_mode);
+}
+
 static void disable(timer_module_t* timer) {
     TimerIntClear(timer->hw_timer_base, timer->timer_int_mode);
     TimerIntDisable(timer->hw_timer_base, timer->timer_int_mode);
@@ -73,6 +77,8 @@ void setupTimerModule(timer_module_t* timer) {
     timer->disable = &disable;
     timer->configureFrequency = &configureFrequency;
     timer->setup = &setup;
+    timer->intClear = &intClear;
+
     /* Setup timer */
     timer->setup(timer);
 }
