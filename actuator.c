@@ -9,10 +9,12 @@
 
 static void turnOn(actuator_t* actuator) {
     pinWrite(actuator->gpio, 1);
+    actuator->status = pinRead(actuator->gpio);
 }
 
 static void turnOff(actuator_t* actuator) {
     pinWrite(actuator->gpio, 0);
+    actuator->status = pinRead(actuator->gpio);
 }
 
 void setupActuator(actuator_t* actuator) {
