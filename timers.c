@@ -26,10 +26,12 @@ static void disable(timer_module_t* timer) {
 }
 
 static void enable(timer_module_t* timer) {
-    TimerIntClear(timer->hw_timer_base, timer->timer_int_mode);
-    TimerIntEnable(timer->hw_timer_base, timer->timer_int_mode);
-    TimerEnable(timer->hw_timer_base, timer->timer_name);
-    timer->is_enabled = 1;
+    if (!timer->is_enabled) {
+        TimerIntClear(timer->hw_timer_base, timer->timer_int_mode);
+        TimerIntEnable(timer->hw_timer_base, timer->timer_int_mode);
+        TimerEnable(timer->hw_timer_base, timer->timer_name);
+        timer->is_enabled = 1;
+    }
 }
 
 static void configureFrequency(timer_module_t* timer, uint32_t frequency_hz) {
