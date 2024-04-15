@@ -38,18 +38,21 @@ static void configureFrequency(timer_module_t* timer, uint32_t frequency_hz) {
     if (frequency_hz == 0) {
         return;
     }
-    uint32_t calculated_period = (SysCtlClockGet() / frequency_hz) - 1;
-    timer->frequency_hz = frequency_hz;
-    if (timer->is_enabled) {
-        TimerIntDisable(timer->hw_timer_base, timer->timer_int_mode);
-        TimerDisable(timer->hw_timer_base, timer->timer_name);
-        /* Calculate the period value based on clock frequency*/
-        TimerLoadSet(timer->hw_timer_base, timer->timer_name, calculated_period);
-        TimerIntEnable(timer->hw_timer_base, timer->timer_int_mode);
-        TimerEnable(timer->hw_timer_base, timer->timer_name);
-    } else {
-        /* Calculate the period value based on clock frequency*/
-        TimerLoadSet(timer->hw_timer_base, timer->timer_name, calculated_period);
+    // Calculate the period based on required frequency (hz)
+    if (timer->frequency_hz != frequency_hz) {
+        timer->frequency_hz = frequency_hz;
+        uint32_t calculated_period = (SysCtlClockGet() / timer->frequency_hz);
+        if (timer->is_enabled) {
+            TimerIntDisable(timer->hw_timer_base, timer->timer_int_mode);
+            TimerDisable(timer->hw_timer_base, timer->timer_name);
+            /* Calculate the period value based on clock frequency*/
+            TimerLoadSet(timer->hw_timer_base, timer->timer_name, calculated_period);
+            TimerIntEnable(timer->hw_timer_base, timer->timer_int_mode);
+            TimerEnable(timer->hw_timer_base, timer->timer_name);
+        } else {
+            /* Calculate the period value based on clock frequency*/
+            TimerLoadSet(timer->hw_timer_base, timer->timer_name, calculated_period);
+        }
     }
 }
 
@@ -72,6 +75,7 @@ static void setup(timer_module_t* timer) {
 
     IntEnable(timer->hw_timer_int);
     timer->is_enabled = 0;
+    timer->frequency_hz = 1;
 }
 
 void setupTimerModule(timer_module_t* timer) {
