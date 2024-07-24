@@ -5,10 +5,11 @@
  *      Author: JUARELU1
  */
 
-#include <src/tm4c_utils/pins.h>
-#include <src/tm4c_utils/timers.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <tm4c_utils/pins.h>
+#include <tm4c_utils/timers.h>
+#include "canopen_tm4c.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"
@@ -41,16 +42,20 @@ static void configureFrequency(timer_module_t* timer, uint32_t frequency_hz) {
     // Calculate the period based on required frequency (hz)
     if (timer->frequency_hz != frequency_hz) {
         timer->frequency_hz = frequency_hz;
-        uint32_t calculated_period = (SysCtlClockGet() / timer->frequency_hz);
+        uint32_t calculated_period = (sys_clock / timer->frequency_hz);
         if (timer->is_enabled) {
             TimerIntDisable(timer->hw_timer_base, timer->timer_int_mode);
             TimerDisable(timer->hw_timer_base, timer->timer_name);
             /* Calculate the period value based on clock frequency*/
+            TimerClockSourceSet(timer->hw_timer_base, TIMER_CLOCK_SYSTEM);
             TimerLoadSet(timer->hw_timer_base, timer->timer_name, calculated_period);
+            /* Prescaler is 0 for timer0, do not divide the frequency*/
+            TimerPrescaleSet(timer->hw_timer_base, timer->timer_name, timer->prescaler);
             TimerIntEnable(timer->hw_timer_base, timer->timer_int_mode);
             TimerEnable(timer->hw_timer_base, timer->timer_name);
         } else {
             /* Calculate the period value based on clock frequency*/
+            TimerClockSourceSet(timer->hw_timer_base, TIMER_CLOCK_SYSTEM);
             TimerLoadSet(timer->hw_timer_base, timer->timer_name, calculated_period);
         }
     }
@@ -84,6 +89,7 @@ void setupTimerModule(timer_module_t* timer) {
     timer->configureFrequency = &configureFrequency;
     timer->setup = &setup;
     timer->intClear = &intClear;
+    timer->is_enabled = 0;
 
     /* Setup timer */
     timer->setup(timer);
