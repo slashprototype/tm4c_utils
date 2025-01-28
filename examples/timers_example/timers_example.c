@@ -1,7 +1,8 @@
-#include <src/tm4c_utils/timers.h>
+#include "tm4c_utils/timers.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"
 #include "inc/hw_memmap.h"
+
 timer_module_t timer0;
 
 void timer0IsrHandler(void) {

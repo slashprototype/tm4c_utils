@@ -1,9 +1,14 @@
 /*
- * pwm_module.h
- *
- *  Created on: 5 abr 2024
- *      Author: JUARELU1
+ * @file        pwm_module.h
+ * @brief       This file contains all the function prototypes for the pwm_module.c file
+ * 
+ * 
+ * @project     TM4C123 GPIO Utilities
+ * @date        1 Jan 2025
+ * @version     1.0.0
+ * @author      Slashprototype
  */
+
 
 #ifndef SRC_TM4C_UTILS_PWM_MODULE_H_
 #define SRC_TM4C_UTILS_PWM_MODULE_H_

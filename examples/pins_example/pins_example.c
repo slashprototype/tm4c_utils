@@ -1,4 +1,4 @@
-#include <src/tm4c_utils/pins.h>
+#include "tm4c_utils/pins.h"
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"

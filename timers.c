@@ -1,15 +1,21 @@
 /*
- * timers.c
- *
- *  Created on: 14 dic 2023
- *      Author: JUARELU1
+ * @file        timers.c
+ * @brief       Timer Utilities for TM4C123 Microcontroller
+ * 
+ * @details     This file contains utility functions for configuring and managing timers
+ *              on the TM4C123 microcontroller. It provides functions to initialize timers,
+ *              set frequencies, enable and disable timers, and handle timer interrupts.
+ * 
+ * @project     TM4C123 Timer Utilities
+ * @date        1 Jan 2025
+ * @version     1.0.0
+ * @author      Slashprototype
  */
 
 #include <stdbool.h>
 #include <stdint.h>
-#include <tm4c_utils/pins.h>
-#include <tm4c_utils/timers.h>
-#include "canopen_tm4c.h"
+#include "tm4c_utils/pins.h"
+#include "tm4c_utils/timers.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"
@@ -42,6 +48,7 @@ static void configureFrequency(timer_module_t* timer, uint32_t frequency_hz) {
     // Calculate the period based on required frequency (hz)
     if (timer->frequency_hz != frequency_hz) {
         timer->frequency_hz = frequency_hz;
+        uint32_t sys_clock = SysCtlClockGet();
         uint32_t calculated_period = (sys_clock / timer->frequency_hz);
         if (timer->is_enabled) {
             TimerIntDisable(timer->hw_timer_base, timer->timer_int_mode);

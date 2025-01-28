@@ -1,8 +1,12 @@
 /*
- * pins.h
- *
- *  Created on: 13 dic 2023
- *      Author: JUARELU1
+ * @file        pins.h
+ * @brief       This file contains all the function prototypes for the pins.c file
+ * 
+ * 
+ * @project     TM4C123 GPIO Utilities
+ * @date        1 Jan 2025
+ * @version     1.0.0
+ * @author      Slashprototype
  */
 
 #ifndef SRC_LIBS_PINS_H_

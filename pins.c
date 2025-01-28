@@ -1,16 +1,21 @@
 /*
- * pins.c
- *
- *  Created on: 13 dic 2023
- *      Author: JUARELU1
+ * @file        pins.c
+ * @brief       GPIO Pin Utilities for TM4C123 Microcontroller
+ * 
+ * @details     This file contains utility functions for configuring and managing GPIO pins
+ *              on the TM4C123 microcontroller. It provides functions to initialize pins,
+ *              set pin modes, read and write pin states, and configure PWM for pins.
+ * 
+ * @project     TM4C123 GPIO Utilities
+ * @date        1 Jan 2025
+ * @version     1.0.0
+ * @author      Slashprototype
  */
 
-
-#include <tm4c_utils/pins.h>
+#include "tm4c_utils/pins.h"
 
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
-
 
 void verifyPeripheral(uint32_t sysctl_periph){
     /* Enable GPIO PORT Base Periph */

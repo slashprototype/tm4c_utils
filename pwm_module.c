@@ -1,8 +1,15 @@
 /*
- * pwm_module.c
- *
- *  Created on: 5 abr 2024
- *      Author: JUARELU1
+ * @file        pwm_module.c
+ * @brief       PWM Module Utilities for TM4C123 Microcontroller
+ * 
+ * @details     This file contains utility functions for configuring and managing PWM modules
+ *              on the TM4C123 microcontroller. It provides functions to initialize PWM modules,
+ *              set duty cycles, enable and disable PWM outputs, and configure PWM parameters.
+ * 
+ * @project     TM4C123 PWM Utilities
+ * @date        1 Jan 2025
+ * @version     1.0.0
+ * @author      Slashprototype
  */
 
 /// \cond

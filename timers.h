@@ -1,9 +1,14 @@
 /*
- * timers.h
- *
- *  Created on: 14 dic 2023
- *      Author: JUARELU1
+ * @file        timers.h
+ * @brief       This file contains all the function prototypes for the timers.c file
+ * 
+ * 
+ * @project     TM4C123 GPIO Utilities
+ * @date        1 Jan 2025
+ * @version     1.0.0
+ * @author      Slashprototype
  */
+
 
 #ifndef SRC_TM4C_UTILS_TIMERS_H_
 #define SRC_TM4C_UTILS_TIMERS_H_
